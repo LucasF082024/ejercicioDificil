@@ -1,18 +1,21 @@
 import { IsNumber, IsString } from 'class-validator';
 import { Usuario } from 'src/usuarios/entities/usuario.entity';
 
-export class CreateAutoDto {
+export class CreateUbicacionDto {
   @IsString()
-  modelo: string;
+  pais: string;
 
   @IsString()
-  marca: string;
+  provincia: string;
 
   @IsString()
-  color: string;
+  localidad: string;
 
   @IsString()
-  patente: string;
+  calle: string;
+
+  @IsString()
+  altura: string;
 
   @IsNumber()
   usuarioId: Usuario;

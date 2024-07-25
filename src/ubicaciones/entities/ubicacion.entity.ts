@@ -1,22 +1,25 @@
 import { Usuario } from 'src/usuarios/entities/usuario.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('autos')
-export class Auto {
+@Entity('ubicaciones')
+export class Ubicacion {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
   @Column('text')
-  modelo: string;
+  pais: string;
 
   @Column('text')
-  marca: string;
+  provincia: string;
 
   @Column('text')
-  color: string;
+  localidad: string;
 
   @Column('text')
-  patente: string;
+  calle: string;
+
+  @Column('text')
+  altura: string;
 
   @ManyToOne(() => Usuario, (usuario) => usuario.autos)
   usuarioId: Usuario;

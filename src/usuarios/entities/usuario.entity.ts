@@ -1,5 +1,16 @@
+import { Auto } from 'src/autos/entities/auto.entity';
+import { Lenguaje } from 'src/lenguajes/entities/lenguaje.entity';
 import { Rol } from 'src/rol/entities/rol.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Ubicacion } from 'src/ubicaciones/entities/ubicacion.entity';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity('usuarios')
 export class Usuario {
@@ -17,4 +28,14 @@ export class Usuario {
 
   @ManyToOne(() => Rol)
   rol: Rol;
+
+  @OneToMany(() => Auto, (auto) => auto.usuarioId)
+  autos: Auto[];
+
+  @OneToMany(() => Ubicacion, (ubi) => ubi.usuarioId)
+  ubicacion: Ubicacion;
+
+  @ManyToMany(() => Lenguaje)
+  @JoinTable()
+  lenguajes: Lenguaje[];
 }

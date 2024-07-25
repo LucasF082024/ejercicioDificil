@@ -10,8 +10,10 @@ import { UserCursoModule } from './user_curso/user_curso.module';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { AutosModule } from './autos/autos.module';
 import { RolModule } from './rol/rol.module';
+import { UbicacionesModule } from './ubicaciones/ubicaciones.module';
+import { LenguajesModule } from './lenguajes/lenguajes.module';
 @Module({
-  imports: [TypeOrmModule.forRoot(typeORM()), UsersModule, RolesModule, PersonalInformationModule, EjemploModule, PeriodoModule, UserCursoModule, UsuariosModule, AutosModule, RolModule],
+  imports: [TypeOrmModule.forRoot(typeORM()), UsersModule, RolesModule, PersonalInformationModule, EjemploModule, PeriodoModule, UserCursoModule, UsuariosModule, AutosModule, RolModule, UbicacionesModule, LenguajesModule],
   controllers: [],
   providers: [],
 })

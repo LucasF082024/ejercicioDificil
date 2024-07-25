@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Rol } from 'src/rol/entities/rol.entity';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
+import { Lenguaje } from 'src/lenguajes/entities/lenguaje.entity';
 
 @Injectable()
 export class UsuariosService {
@@ -15,12 +16,19 @@ export class UsuariosService {
     private readonly rolRepository: Repository<Rol>,
   ) {}
 
-  create(createUsuarioDto: any) {
-    return this.usuarioRepository.save(createUsuarioDto);
+  create(createUsuarioDto: CreateUsuarioDto) {
+    const lenguajes = new Lenguaje();
+    lenguajes.id = createUsuarioDto.lenguajes[0] as any;
+    return this.usuarioRepository.save({
+      ...createUsuarioDto,
+      lenguajes: [lenguajes],
+    });
   }
 
   async findAll() {
-    const data = await this.usuarioRepository.find();
+    const data = await this.usuarioRepository.find({
+      relations: { autos: true },
+    });
     return { data: data };
   }
 
